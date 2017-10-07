@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 883, y: 492}
   m_MaxSize: {x: 16008, y: 14042}
   vertical: 0
-  controlID: 10946
+  controlID: 21
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 606, y: 492}
   m_MaxSize: {x: 12006, y: 14042}
   vertical: 1
-  controlID: 10947
+  controlID: 22
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_MinSize: {x: 606, y: 221}
   m_MaxSize: {x: 12006, y: 4021}
   vertical: 0
-  controlID: 10924
+  controlID: 23
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -342,18 +342,18 @@ MonoBehaviour:
       y: 17
       width: 779
       height: 535
-    m_Scale: {x: 0.41790107, y: 0.41790107}
-    m_Translation: {x: 400.525, y: 267.5}
+    m_Scale: {x: 0.4057292, y: 0.4057292}
+    m_Translation: {x: 389.5, y: 267.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -958.4206
-      y: -640.10364
-      width: 1864.0775
-      height: 1280.2073
+      x: -959.99994
+      y: -659.30676
+      width: 1919.9999
+      height: 1318.6135
     m_MinimalGUI: 1
   m_defaultScale: 0.40572917
   m_TargetTexture: {fileID: 0}
@@ -390,9 +390,9 @@ MonoBehaviour:
     height: 552
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 08e5ffff
-    m_LastClickedID: -6904
-    m_ExpandedIDs: 5093fdffc8fbffff00000000
+    m_SelectedIDs: b8250000
+    m_LastClickedID: 9656
+    m_ExpandedIDs: e6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -552,19 +552,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs/Door
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs/Door
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\laura\Documents\TalentumGameJam\TalentumGameJam
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: bc250000
-    m_LastClickedID: 9660
-    m_ExpandedIDs: 000000006825000090250000be25000000ca9a3bffffff7f
+    m_SelectedIDs: 94260000
+    m_LastClickedID: 9876
+    m_ExpandedIDs: 00000000ce240000f62400003625000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -592,7 +592,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006825000090250000be25000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000ce240000f624000036250000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -699,7 +699,7 @@ MonoBehaviour:
     y: 92
     width: 387
     height: 926
-  m_ScrollPosition: {x: 0, y: 66.95508}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 160
