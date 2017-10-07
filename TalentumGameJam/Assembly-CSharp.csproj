@@ -46,14 +46,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DoorProceduralSetter.cs" />
      <Compile Include="Assets\Scripts\DoorPhysicHandler.cs" />
+     <Compile Include="Assets\Scripts\DoorProceduralSetter.cs" />
      <Compile Include="Assets\Scripts\DynamicPowerDownBehaviour.cs" />
      <Compile Include="Assets\Scripts\HackerInfo.cs" />
      <Compile Include="Assets\Scripts\ImagesFader.cs" />
      <Compile Include="Assets\Scripts\PlayerAnimationHandler.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PowerUpHandler.cs" />
+     <Compile Include="Assets\Scripts\RandomCompanyController.cs" />
      <Compile Include="Assets\Scripts\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\SequenceGenerator.cs" />
      <Compile Include="Assets\Scripts\TimerController.cs" />
