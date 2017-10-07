@@ -7,6 +7,11 @@ public class TimerController : MonoBehaviour {
 
     private Text timerText;
     private bool didEventSent = false;
+
+    public bool activeTimer = true;
+    
+    public float defaultValue;
+
     public delegate void TimerEvent();
     public static TimerEvent onTimerEnd; 
 	void Start () {
@@ -51,5 +56,11 @@ public class TimerController : MonoBehaviour {
     public void editTime(float addition)
     {
         this.timerText.text = (float.Parse(timerText.text) + addition).ToString("F2");
+    }
+
+    public void resetTimer(bool active = false)
+    {
+        timerText.text = defaultValue.ToString("F2");
+        activeTimer = active;
     }
 }
