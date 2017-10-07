@@ -9,13 +9,19 @@ public class SpawnChild : MonoBehaviour {
     public void spawnSelectedChild(int room, int pc)
     {
         for (int i = 0; i < childs.Length;i++) {
-            if(mustSpawn()) {
+            if(UnityEngine.Random.value < mustSpawn(room)) {
                 childs[i].transform.GetComponent<SpawnGenerator>().spawn();
             }
         }
     }
-    private bool mustSpawn()
+    private float mustSpawn(int room)
     {
-        return true;
+        if (room < 4)
+            return 0.25f;
+        else if (room < 8)
+            return UnityEngine.Random.Range(0.25f, 0.5f);
+        else
+            return UnityEngine.Random.Range(0.25f, 1f);
+
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpawnGenerator : MonoBehaviour {
 
     public GameObject[] prefabs;
+    public bool randomizeSpeed;
 
     public void spawn()
     {
@@ -17,8 +18,21 @@ public class SpawnGenerator : MonoBehaviour {
         Vector2 nextSpawnPosition = (Vector2)this.transform.position + jitter;
 
         int random = (int)Mathf.Round(UnityEngine.Random.Range(0,prefabs.Length));
+        GameObject gO;
 
-        Instantiate(prefabs[random], nextSpawnPosition, Quaternion.identity);
+        if (prefabs.Length > 0)
+            gO = Instantiate(prefabs[random], nextSpawnPosition, Quaternion.identity);
+        else
+            gO = null;
+
+        if (randomizeSpeed)
+        {
+            
+            gO.GetComponent<DynamicPowerDownBehaviour>().maxDistance = UnityEngine.Random.Range(
+                                                                        0,
+                                                                        3);
+            gO.GetComponent<DynamicPowerDownBehaviour>().speed = UnityEngine.Random.value;
+        }
     }
 
     

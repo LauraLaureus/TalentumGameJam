@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\DoorPhysicHandler.cs" />
     <Compile Include="Assets\Scripts\DoorProceduralSetter.cs" />
     <Compile Include="Assets\Scripts\DynamicPowerDownBehaviour.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HackerInfo.cs" />
     <Compile Include="Assets\Scripts\ImagesFader.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimationHandler.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\RandomCompanyController.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\SequenceGenerator.cs" />
+    <Compile Include="Assets\Scripts\SpawnChild.cs" />
     <Compile Include="Assets\Scripts\SpawnController.cs" />
     <Compile Include="Assets\Scripts\SpawnGenerator.cs" />
     <Compile Include="Assets\Scripts\TimerController.cs" />

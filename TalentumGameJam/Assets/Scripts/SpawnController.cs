@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void SpawnNewLevel(int room, int pc)
+    {
+        for (int child = 0; child < transform.childCount; child++)
+        {
+            transform.GetChild(child).GetComponent<SpawnChild>().spawnSelectedChild(room,pc);
+        }
+    }
 }

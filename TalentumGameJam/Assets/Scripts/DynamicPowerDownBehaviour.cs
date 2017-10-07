@@ -9,6 +9,7 @@ public class DynamicPowerDownBehaviour : MonoBehaviour {
 
     public float maxDistance;
     Vector2 direction;
+    public float speed;
 
 
 	// Use this for initialization
@@ -39,7 +40,7 @@ public class DynamicPowerDownBehaviour : MonoBehaviour {
         else
             inverseDirection();
 
-        rb.velocity = direction;
+        rb.velocity = speed*direction;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
