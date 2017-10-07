@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ef8f48a1659462341945ba95ce48b216
+timeCreated: 1507392264
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: v-insider deinterlaced
+  fontNames:
+  - v-insider deinterlaced
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
