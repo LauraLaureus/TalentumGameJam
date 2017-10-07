@@ -46,7 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DoorProceduralSetter.cs" />
+     <Compile Include="Assets\Scripts\HackerInfo.cs" />
+     <Compile Include="Assets\Scripts\ImagesFader.cs" />
+     <Compile Include="Assets\Scripts\PlayerAnimationHandler.cs" />
+     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\SceneLoader.cs" />
+     <Compile Include="Assets\Scripts\SequenceGenerator.cs" />
      <Compile Include="Assets\Scripts\TimerController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
