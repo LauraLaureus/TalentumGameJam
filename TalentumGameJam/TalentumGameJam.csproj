@@ -88,6 +88,8 @@
     <Compile Include="Assets\Scripts\PowerUpHandler.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\SequenceGenerator.cs" />
+    <Compile Include="Assets\Scripts\SpawnController.cs" />
+    <Compile Include="Assets\Scripts\SpawnGenerator.cs" />
     <Compile Include="Assets\Scripts\TimerController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
