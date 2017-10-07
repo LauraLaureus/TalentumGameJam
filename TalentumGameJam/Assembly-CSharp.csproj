@@ -57,7 +57,10 @@
      <Compile Include="Assets\Scripts\RandomCompanyController.cs" />
      <Compile Include="Assets\Scripts\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\SequenceGenerator.cs" />
+     <Compile Include="Assets\Scripts\SpawnController.cs" />
+     <Compile Include="Assets\Scripts\SpawnGenerator.cs" />
      <Compile Include="Assets\Scripts\TimerController.cs" />
+     <Compile Include="Assets\SpawnChild.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
