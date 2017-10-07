@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\PlayerAnimationHandler.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PowerUpHandler.cs" />
+    <Compile Include="Assets\Scripts\RandomCompanyController.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\SequenceGenerator.cs" />
     <Compile Include="Assets\Scripts\SpawnController.cs" />
