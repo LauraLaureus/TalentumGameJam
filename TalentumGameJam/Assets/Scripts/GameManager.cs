@@ -58,24 +58,13 @@ public class GameManager : MonoBehaviour {
 	}
 
     bool ready = true;
+    int index = 0;    
     private void playSequence()
-    {
-
-        GameObject go;
-
-        int index = 0;
-        while (index < sequence.Count)
-        {
-            var item = sequence[index];
-            go = selectDoor(item);
-            if (ready)
-            {
+    {      
+            if (ready && index < sequence.Count) {
                 ready = false;
-                StartCoroutine("PlayDoor", go);
-                index += 1;
+                StartCoroutine("PlayDoor", selectDoor(sequence[index]));
             }
-        }
-
     }
 
     private GameObject selectDoor(SequenceGenerator.SequenceElement item)
@@ -104,6 +93,8 @@ public class GameManager : MonoBehaviour {
         door.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(2f);
         ready = true;
+        index++;
+        playSequence();
     }
 
     private void debugPrint()
