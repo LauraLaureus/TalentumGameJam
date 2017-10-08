@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
     TimerController timer;
     List<SequenceGenerator.SequenceElement> sequence;
 
+    public GameObject nextLevelPanel;
+
     private void OnEnable()
     {
         TimerController.onTimerEnd += OnTimerEnd_Reset;
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour {
         {
             info.currentRoomNum = 0;
             proceduralGenerator.CleanStage();
-            sequence = SequenceGenerator.generateSequence(4);
+            sequence = SequenceGenerator.generateSequence(currentLength);
             debugPrint();
             proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
             player.transform.position = Vector2.zero;
@@ -48,23 +50,34 @@ public class GameManager : MonoBehaviour {
         proceduralGenerator = GameObject.Find("ProceduralController").GetComponent<SpawnController>();
         info = player.GetComponent<HackerInfo>();
 
-        sequence = SequenceGenerator.generateSequence(4);
+        sequence = SequenceGenerator.generateSequence(currentLength);
 
         debugPrint();
 
-        //playSequence();
+        playSequence();
 
-        proceduralGenerator.SpawnNewLevel(info.currentRoomNum,info.currentComputerID);
 	}
 
     bool ready = true;
     int index = 0;    
-    private void playSequence()
+    private void playSequence(bool resetState = false)
     {      
-            if (ready && index < sequence.Count) {
-                ready = false;
-                StartCoroutine("PlayDoor", selectDoor(sequence[index]));
-            }
+        if (resetState)
+        {
+            debugPrint();
+            //timer.activeTimer = true;
+            player.transform.position = Vector2.zero;
+        }
+        if (ready && index < sequence.Count) {
+            ready = false;
+            StartCoroutine("PlayDoor", selectDoor(sequence[index]));
+        }
+        if (index >= sequence.Count)
+        {
+            proceduralGenerator.SpawnNewLevel(info.currentRoomNum,info.currentComputerID);
+            timer.activeTimer = true;
+            index = 0;
+        }
     }
 
     private GameObject selectDoor(SequenceGenerator.SequenceElement item)
@@ -109,7 +122,6 @@ public class GameManager : MonoBehaviour {
 
     public void matchElement(SequenceGenerator.SequenceElement el)
     {
-        player.GetComponent<HackerInfo>().currentSequence = info.currentSequence;
 
 
         if (sequence[0] == el)
@@ -117,15 +129,9 @@ public class GameManager : MonoBehaviour {
             sequence.RemoveAt(0);
             if (sequence.Count == 0)
             {
-                info.currentComputerID += 1;
-                timer.resetTimer();
-
-                proceduralGenerator.CleanStage();
-                sequence = SequenceGenerator.generateSequence(4);
-                //playSequence();
-                proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
-                timer.activeTimer = true;
-                player.transform.position = Vector2.zero;
+                Time.timeScale = 0;
+                nextLevelPanel.SetActive(true);
+                //TODO activate Panel 
             }
             else
             {
@@ -140,11 +146,29 @@ public class GameManager : MonoBehaviour {
         {
             attempts -= 1;
             info.currentRoomNum = 0;
+
+            debugPrint();
+            timer.resetTimer();
             proceduralGenerator.CleanStage();
-            proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
+            sequence = SequenceGenerator.generateSequence(currentLength);
+            playSequence(true);
             spawnPlayerProperly(el);
 
         }
+    }
+
+    public void activateAfterDialog()
+    {
+        nextLevelPanel.SetActive(false);
+        Time.timeScale = 1;
+        info.currentComputerID += 1;
+        timer.resetTimer();
+
+        proceduralGenerator.CleanStage();
+        currentLength += 1;
+        sequence = SequenceGenerator.generateSequence(currentLength);
+        playSequence(true);
+        
     }
 
     private void spawnPlayerProperly(SequenceGenerator.SequenceElement el)

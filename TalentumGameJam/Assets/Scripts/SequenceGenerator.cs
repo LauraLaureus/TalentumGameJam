@@ -28,7 +28,7 @@ public class SequenceGenerator {
 
     private static SequenceElement gen()
     {
-        int r = (int)UnityEngine.Random.Range(1f, 4f);
+        int r = (int)Mathf.Round(UnityEngine.Random.Range(1f, 4f));
 
         switch (r)
         {

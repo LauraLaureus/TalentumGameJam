@@ -22,11 +22,15 @@ public class TimerController : MonoBehaviour {
 	}
     private void updateTimer()
     {
-        if(mustReduceTime()) {
-            reduceTimer();
-        }else {
-            timerText.text = "0.00";
-            if(!didEventSent) sendEvent();                       
+        if (activeTimer)
+        {
+
+            if(mustReduceTime()) {
+                reduceTimer();
+            }else {
+                timerText.text = "0.00";
+                if(!didEventSent) sendEvent();                       
+            }
         }
     }
     private bool mustReduceTime()
