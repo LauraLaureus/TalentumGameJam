@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     GameObject player;
     int currentLength = 4;
     HackerInfo info;
-    int attempts = 3;
+    public int attempts = 3;
     TimerController timer;
     List<SequenceGenerator.SequenceElement> sequence;
     // Use this for initialization
