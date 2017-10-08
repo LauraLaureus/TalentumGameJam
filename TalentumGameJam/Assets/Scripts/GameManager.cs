@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour {
     SpawnController proceduralGenerator;
     GameObject player;
     int currentLength = 4;
-    HackerInfo info;
+    public HackerInfo info;
     public int attempts = 3;
     TimerController timer;
     List<SequenceGenerator.SequenceElement> sequence;
 
     public GameObject nextLevelPanel;
+    public GameObject gameOverPanel;
 
     private void OnEnable()
     {
@@ -35,17 +36,21 @@ public class GameManager : MonoBehaviour {
             timer.resetTimer(true);
         }
         else {
-            //TODO somthing pretty
+            Time.timeScale = 0;
+            gameOverPanel.SetActive(true);
         }
     }
 
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(this);
+        Time.timeScale = 1;
 
         timer = GameObject.Find("Timer").transform.GetChild(0).GetComponent<TimerController>();
         timer.activeTimer = false;
         player = GameObject.Find("Player");
+
+        player.GetComponent<PlayerMovement>().enabled = false;
 
         proceduralGenerator = GameObject.Find("ProceduralController").GetComponent<SpawnController>();
         info = player.GetComponent<HackerInfo>();
@@ -56,12 +61,13 @@ public class GameManager : MonoBehaviour {
 
         playSequence();
 
-	}
+
+    }
 
     bool ready = true;
     int index = 0;    
     private void playSequence(bool resetState = false)
-    {      
+    {
         if (resetState)
         {
             debugPrint();
@@ -77,6 +83,7 @@ public class GameManager : MonoBehaviour {
             proceduralGenerator.SpawnNewLevel(info.currentRoomNum,info.currentComputerID);
             timer.activeTimer = true;
             index = 0;
+            player.GetComponent<PlayerMovement>().enabled = true;
         }
     }
 
@@ -138,19 +145,29 @@ public class GameManager : MonoBehaviour {
                 info.currentRoomNum += 1;
                 proceduralGenerator.CleanStage();
                 proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
-
                 spawnPlayerProperly(el);
             }
         }
         else
         {
             attempts -= 1;
+
+            if (attempts == 0)
+            {
+                Time.timeScale = 0;
+                gameOverPanel.SetActive(true);
+                return;
+            }
+
             info.currentRoomNum = 0;
 
             debugPrint();
             timer.resetTimer();
             proceduralGenerator.CleanStage();
             sequence = SequenceGenerator.generateSequence(currentLength);
+
+            player.GetComponent<PlayerMovement>().enabled = false;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             playSequence(true);
             spawnPlayerProperly(el);
 
@@ -164,6 +181,8 @@ public class GameManager : MonoBehaviour {
         info.currentComputerID += 1;
         timer.resetTimer();
 
+        player.GetComponent<PlayerMovement>().enabled = false;
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         proceduralGenerator.CleanStage();
         currentLength += 1;
         sequence = SequenceGenerator.generateSequence(currentLength);
