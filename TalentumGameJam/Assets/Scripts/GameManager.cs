@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(this);
 
         timer = GameObject.Find("Timer").transform.GetChild(0).GetComponent<TimerController>();
+        timer.activeTimer = false;
         player = GameObject.Find("Player");
 
         proceduralGenerator = GameObject.Find("ProceduralController").GetComponent<SpawnController>();
@@ -51,10 +52,59 @@ public class GameManager : MonoBehaviour {
 
         debugPrint();
 
-        //playSequence();
+        playSequence();
 
         proceduralGenerator.SpawnNewLevel(info.currentRoomNum,info.currentComputerID);
 	}
+
+    bool ready = true;
+    private void playSequence()
+    {
+
+        GameObject go;
+
+        int index = 0;
+        while (index < sequence.Count)
+        {
+            var item = sequence[index];
+            go = selectDoor(item);
+            if (ready)
+            {
+                ready = false;
+                StartCoroutine("PlayDoor", go);
+                index += 1;
+            }
+        }
+
+    }
+
+    private GameObject selectDoor(SequenceGenerator.SequenceElement item)
+    {
+
+        switch(item)
+        {
+            case SequenceGenerator.SequenceElement.N:
+                return GameObject.Find("NorthDoor");
+
+            case SequenceGenerator.SequenceElement.O:
+                return GameObject.Find("WestDoor");
+
+            case SequenceGenerator.SequenceElement.S:
+                return GameObject.Find("SouthDoor");
+
+            //case SequenceGenerator.SequenceElement.E:
+            default:  return GameObject.Find("EastDoor");
+
+        }
+    }
+
+    private  IEnumerator PlayDoor(GameObject door)
+    {
+        door.GetComponent<Animation>().Play();
+        door.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(2f);
+        ready = true;
+    }
 
     private void debugPrint()
     {
@@ -98,7 +148,11 @@ public class GameManager : MonoBehaviour {
         else
         {
             attempts -= 1;
-            //TODO update life. 
+            info.currentRoomNum = 0;
+            proceduralGenerator.CleanStage();
+            proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
+            spawnPlayerProperly(el);
+
         }
     }
 
