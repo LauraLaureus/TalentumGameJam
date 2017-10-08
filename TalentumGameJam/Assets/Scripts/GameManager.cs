@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour {
 
     private  IEnumerator PlayDoor(GameObject door)
     {
-        door.GetComponent<Animation>().Play();
+        door.GetComponent<Animator>().SetTrigger("doorMov");
         door.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(2f);
         ready = true;
