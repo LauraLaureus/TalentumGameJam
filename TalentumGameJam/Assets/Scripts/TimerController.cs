@@ -10,7 +10,7 @@ public class TimerController : MonoBehaviour {
 
     public bool activeTimer = true;
     
-    public float defaultValue;
+    public float defaultValue = 30f;
 
     public delegate void TimerEvent();
     public static TimerEvent onTimerEnd; 

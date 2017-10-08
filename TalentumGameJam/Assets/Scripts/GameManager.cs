@@ -12,6 +12,31 @@ public class GameManager : MonoBehaviour {
     public int attempts = 3;
     TimerController timer;
     List<SequenceGenerator.SequenceElement> sequence;
+
+    private void OnEnable()
+    {
+        TimerController.onTimerEnd += OnTimerEnd_Reset;
+    }
+
+    private void OnTimerEnd_Reset()
+    {
+        attempts -= 1;
+
+        if (attempts > 0)
+        {
+            info.currentRoomNum = 0;
+            proceduralGenerator.CleanStage();
+            sequence = SequenceGenerator.generateSequence(4);
+            debugPrint();
+            proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
+            player.transform.position = Vector2.zero;
+            timer.resetTimer(true);
+        }
+        else {
+            //TODO somthing pretty
+        }
+    }
+
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(this);
@@ -55,18 +80,19 @@ public class GameManager : MonoBehaviour {
                 timer.resetTimer();
 
                 proceduralGenerator.CleanStage();
-                info.currentSequence = SequenceGenerator.generateSequence(4);
+                sequence = SequenceGenerator.generateSequence(4);
                 //playSequence();
                 proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
                 timer.activeTimer = true;
-                //TODO actualizar el player
+                player.transform.position = Vector2.zero;
             }
             else
             {
                 info.currentRoomNum += 1;
                 proceduralGenerator.CleanStage();
                 proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
-                //TODO actualizar el player
+
+                spawnPlayerProperly(el);
             }
         }
         else
@@ -76,6 +102,27 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private void spawnPlayerProperly(SequenceGenerator.SequenceElement el)
+    {
+        switch (el)
+        {
+            case SequenceGenerator.SequenceElement.N:
+                player.transform.position = (Vector2)GameObject.Find("SouthDoor").transform.position + 2 * Vector2.up;
+                break;
+
+            case SequenceGenerator.SequenceElement.O:
+                player.transform.position = (Vector2)GameObject.Find("EastDoor").transform.position + 2 * -Vector2.right;
+                break;
+
+            case SequenceGenerator.SequenceElement.S:
+                player.transform.position = (Vector2)GameObject.Find("NorthDoor").transform.position + 2 * Vector2.down;
+                break;
+
+            case SequenceGenerator.SequenceElement.E:
+                player.transform.position = (Vector2)GameObject.Find("WestDoor").transform.position + 2 * Vector2.right;
+                break;
+        }
+    }
 
     public void ResetLevel()
     {
@@ -86,6 +133,12 @@ public class GameManager : MonoBehaviour {
         proceduralGenerator = GameObject.Find("ProceduralController").GetComponent<SpawnController>();
         proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
 
+    }
+
+
+    private void OnDisable()
+    {
+        TimerController.onTimerEnd -= OnTimerEnd_Reset;
     }
 
 }

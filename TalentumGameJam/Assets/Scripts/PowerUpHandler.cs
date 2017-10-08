@@ -6,9 +6,12 @@ public class PowerUpHandler : MonoBehaviour {
 
     public float addition;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject.Find("Timer").transform.GetChild(0).GetComponent<TimerController>().editTime(addition);
-        Destroy(this.gameObject);
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            GameObject.Find("Timer").transform.GetChild(0).GetComponent<TimerController>().editTime(addition);
+            Destroy(this.gameObject);
+        }
     }
 }
