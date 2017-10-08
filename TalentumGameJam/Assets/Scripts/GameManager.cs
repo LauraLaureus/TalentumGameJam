@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour {
 
         debugPrint();
 
-        playSequence();
+        //playSequence();
 
         proceduralGenerator.SpawnNewLevel(info.currentRoomNum,info.currentComputerID);
 	}

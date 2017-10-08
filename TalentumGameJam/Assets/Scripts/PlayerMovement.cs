@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour {
     public delegate void KeyPressedEvent(MovementEnum e);
     public static KeyPressedEvent OnKeyPressed;
 
-
+    public float  speed;
     private void Start()
     {
         
@@ -28,41 +28,37 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
 
-        Vector2 result = new Vector2();
+        Vector2 result = new Vector2(0,0);
+       
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            result = Vector2.down;
-            SendEvent(MovementEnum.Down);
+            result = (Vector2)transform.up;
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+            //this.transform.localScale = new Vector3(1, -1, 1);
         }
 
-        else if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            result = Vector2.up;
-            SendEvent(MovementEnum.Down);
-
+            result = (Vector2)transform.up;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            //this.transform.localScale = new Vector3(1, 1, 1);
         }
 
-        else if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            result = Vector2.right;
-            SendEvent(MovementEnum.Down);
+            result = (Vector2)transform.up;
+            transform.rotation = Quaternion.Euler(0, 0, -90);
 
         }
 
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            result = Vector2.left;
-            SendEvent(MovementEnum.Down);
-
-        }
-        else
-        {
-            result = Vector2.zero;
-            SendEvent(MovementEnum.Idle);
+            result = (Vector2)transform.up;
+            transform.rotation = Quaternion.Euler(0, 0, 90);
         }
 
-        rb.velocity = result;
+        rb.velocity = speed * result;
 	}
 
     private void SendEvent(MovementEnum e)
