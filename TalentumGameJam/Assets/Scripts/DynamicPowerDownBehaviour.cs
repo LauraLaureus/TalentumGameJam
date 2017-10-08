@@ -18,10 +18,7 @@ public class DynamicPowerDownBehaviour : MonoBehaviour {
         originalPosition = transform.position;
 
         maxDistance = 3f;
-            //Mathf.Max(
-            //Vector2.Distance(originalPosition,Physics2D.Raycast(originalPosition,this.transform.right).point),
-            //Vector2.Distance(originalPosition,Physics2D.Raycast(originalPosition,-this.transform.right).point)
-            //);
+      
 
         if (UnityEngine.Random.value < 0.5)
         {

@@ -6,6 +6,11 @@ public class DoorPhysicHandler : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //TODO llamar a alguien para que actualice el player y el escenario.
+        if (collision.gameObject.tag != "Room")
+        {
+            GameObject.Find("GameManager").GetComponent<GameManager>().matchElement(
+                this.GetComponent<DoorProceduralSetter>().element
+                );
+        }
     }
 }

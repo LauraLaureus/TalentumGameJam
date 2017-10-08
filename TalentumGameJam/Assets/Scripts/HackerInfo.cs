@@ -35,4 +35,8 @@ public class HackerInfo : MonoBehaviour{
         else
             return false;
     }
+
+    public bool didFinishSequence() {
+        return currentSequence.Count == 0;
+    }
 }
