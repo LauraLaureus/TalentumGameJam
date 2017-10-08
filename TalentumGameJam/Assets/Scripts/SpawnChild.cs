@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class SpawnChild : MonoBehaviour {
     {
         for (int i = 0; i < childs.Length;i++) {
             if(UnityEngine.Random.value < mustSpawn(room)) {
-                childs[i].transform.GetComponent<SpawnGenerator>().spawn();
+                childs[i].transform.GetComponent<SpawnGenerator>().spawnSelectedChild();
             }
         }
     }
@@ -23,5 +24,12 @@ public class SpawnChild : MonoBehaviour {
         else
             return UnityEngine.Random.Range(0.25f, 1f);
 
+    }
+
+    public void Clean()
+    {
+        for(int i = 0; i < childs.Length; i++) {
+           childs[i].transform.GetComponent<SpawnGenerator>().Clear();
+        }
     }
 }

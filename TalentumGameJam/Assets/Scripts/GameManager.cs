@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour {
             {
                 info.currentComputerID += 1;
                 timer.resetTimer();
-                //TODO clear
+
+                proceduralGenerator.CleanStage();
                 info.currentSequence = SequenceGenerator.generateSequence(4);
                 //playSequence();
                 proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour {
             else
             {
                 info.currentRoomNum += 1;
+                proceduralGenerator.CleanStage();
                 proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
                 //TODO actualizar el player
             }

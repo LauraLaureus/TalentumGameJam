@@ -8,7 +8,9 @@ public class SpawnGenerator : MonoBehaviour {
     public GameObject[] prefabs;
     public bool randomizeSpeed;
 
-    public void spawn()
+    private GameObject obj;
+
+    public void spawnSelectedChild()
     {
         Vector2 jitter = new Vector2(
                 UnityEngine.Random.value,
@@ -18,21 +20,25 @@ public class SpawnGenerator : MonoBehaviour {
         Vector2 nextSpawnPosition = (Vector2)this.transform.position + jitter;
 
         int random = (int)Mathf.Round(UnityEngine.Random.Range(0,prefabs.Length));
-        GameObject gO;
 
         if (prefabs.Length > 0)
-            gO = Instantiate(prefabs[random], nextSpawnPosition, Quaternion.identity);
+            obj = Instantiate(prefabs[random], nextSpawnPosition, Quaternion.identity);
         else
-            gO = null;
+            obj = null;
 
         if (randomizeSpeed)
         {
             
-            gO.GetComponent<DynamicPowerDownBehaviour>().maxDistance = UnityEngine.Random.Range(
+            obj.GetComponent<DynamicPowerDownBehaviour>().maxDistance = UnityEngine.Random.Range(
                                                                         0,
                                                                         3);
-            gO.GetComponent<DynamicPowerDownBehaviour>().speed = UnityEngine.Random.value;
+            obj.GetComponent<DynamicPowerDownBehaviour>().speed = UnityEngine.Random.value;
         }
+    }
+
+    public void Clear() {
+        if (obj != null)
+            Destroy(obj);
     }
 
     

@@ -11,4 +11,13 @@ public class SpawnController : MonoBehaviour {
             transform.GetChild(child).GetComponent<SpawnChild>().spawnSelectedChild(room,pc);
         }
     }
+
+    public void CleanStage()
+    {
+        for (int child = 0; child < transform.childCount; child++)
+        {
+            transform.GetChild(child).GetComponent<SpawnChild>().Clean();
+        }
+
+    }
 }
