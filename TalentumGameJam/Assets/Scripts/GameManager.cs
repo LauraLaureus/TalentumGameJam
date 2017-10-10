@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         Time.timeScale = 1;
 
         FX = GetComponent<AudioSource>();
