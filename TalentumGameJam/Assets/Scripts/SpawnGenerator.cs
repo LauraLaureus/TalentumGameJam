@@ -13,8 +13,8 @@ public class SpawnGenerator : MonoBehaviour {
     public void spawnSelectedChild()
     {
         Vector2 jitter = new Vector2(
-                UnityEngine.Random.value,
-                UnityEngine.Random.value
+                UnityEngine.Random.value/2,
+                UnityEngine.Random.value/2
             );
 
         Vector2 nextSpawnPosition = (Vector2)this.transform.position + jitter;

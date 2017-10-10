@@ -8,7 +8,7 @@ public class readScrore : MonoBehaviour {
 	// Use this for initialization
 	void OnEnable () {
         HackerInfo info = GameObject.Find("GameManager").GetComponent<GameManager>().info;
-        this.GetComponent<Text>().text = ((info.currentComputerID + 1) + info.currentRoomNum).ToString();
+        this.GetComponent<Text>().text = " " + ((info.currentComputerID + 1)*info.currentRoomNum).ToString() + "CRYPTO COINS";
 	}
 	
 	
