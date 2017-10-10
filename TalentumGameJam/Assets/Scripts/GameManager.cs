@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
     TimerController timer;
     List<SequenceGenerator.SequenceElement> sequence;
 
+    AudioSource FX;
+
     public GameObject nextLevelPanel;
     public GameObject gameOverPanel;
 
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(this);
         Time.timeScale = 1;
 
+        FX = GetComponent<AudioSource>();
         timer = GameObject.Find("Timer").transform.GetChild(0).GetComponent<TimerController>();
         timer.activeTimer = false;
         player = GameObject.Find("Player");
@@ -142,6 +145,7 @@ public class GameManager : MonoBehaviour {
             }
             else
             {
+                FX.Play();
                 info.currentRoomNum += 1;
                 proceduralGenerator.CleanStage();
                 proceduralGenerator.SpawnNewLevel(info.currentRoomNum, info.currentComputerID);
@@ -169,7 +173,7 @@ public class GameManager : MonoBehaviour {
             player.GetComponent<PlayerMovement>().enabled = false;
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             playSequence(true);
-            spawnPlayerProperly(el);
+            player.transform.position = Vector2.zero;
 
         }
     }
@@ -195,19 +199,19 @@ public class GameManager : MonoBehaviour {
         switch (el)
         {
             case SequenceGenerator.SequenceElement.N:
-                player.transform.position = (Vector2)GameObject.Find("SouthDoor").transform.position + 2 * Vector2.up;
+                player.transform.position = (Vector2)GameObject.Find("SouthDoor").transform.position + 3 * Vector2.up;
                 break;
 
             case SequenceGenerator.SequenceElement.O:
-                player.transform.position = (Vector2)GameObject.Find("EastDoor").transform.position + 2 * -Vector2.right;
+                player.transform.position = (Vector2)GameObject.Find("EastDoor").transform.position + 3 * -Vector2.right;
                 break;
 
             case SequenceGenerator.SequenceElement.S:
-                player.transform.position = (Vector2)GameObject.Find("NorthDoor").transform.position + 2 * Vector2.down;
+                player.transform.position = (Vector2)GameObject.Find("NorthDoor").transform.position + 3 * Vector2.down;
                 break;
 
             case SequenceGenerator.SequenceElement.E:
-                player.transform.position = (Vector2)GameObject.Find("WestDoor").transform.position + 2 * Vector2.right;
+                player.transform.position = (Vector2)GameObject.Find("WestDoor").transform.position + 3 * Vector2.right;
                 break;
         }
     }
